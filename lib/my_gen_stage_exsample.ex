@@ -1,5 +1,10 @@
 alias Experimental.GenStage
 
+# [A] -> [B] -> [C]
+# [A] is producer
+# [B] is producer_consumer
+# [C] is consumer
+
 defmodule A do
   use GenStage
 
