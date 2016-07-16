@@ -24,4 +24,17 @@ defmodule MyGenStage do
     end)
     |> Enum.to_list()
   end
+
+  # example to make more effective
+  # def example_stream_async() do
+  #   File.stream!(@test_file)
+  #   |> Stream.flat_map(fn line ->
+  #     String.split(line, " ")
+  #   end)
+  #   |> Stream.async() # new
+  #   |> Enum.reduce(%{}, fn word, acc ->
+  #     Map.update(acc, word, 1, & &1 + 1)
+  #   end)
+  #   |> Enum.to_list()
+  # end
 end
