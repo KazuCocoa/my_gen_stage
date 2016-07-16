@@ -37,4 +37,15 @@ defmodule MyGenStage do
   #   end)
   #   |> Enum.to_list()
   # end
+
+#  alias Experimental.GenStage.Flow, as: Flow
+#  def example_with_genstage_as_prototype() do
+#    File.stream!(@test_file)
+#    |> Flow.from_enumerable()
+#    |> Flow.flat_map(fn line ->
+#      for word <- String.split(" "), do: {word, 1}
+#    end)
+#    |> Flow.reduce_by_key(& &1 + &2)
+#    |> Enum.to_list()
+#  end
 end
