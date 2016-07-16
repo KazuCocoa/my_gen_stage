@@ -1,0 +1,2 @@
+defmodule MyGenStage do
+end
