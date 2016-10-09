@@ -38,14 +38,15 @@ defmodule MyGenStage do
   #   |> Enum.to_list()
   # end
 
-#  alias Experimental.GenStage.Flow, as: Flow
-#  def example_with_genstage_as_prototype() do
-#    File.stream!(@test_file)
-#    |> Flow.from_enumerable()
-#    |> Flow.flat_map(fn line ->
-#      for word <- String.split(" "), do: {word, 1}
-#    end)
-#    |> Flow.reduce_by_key(& &1 + &2)
-#    |> Enum.to_list()
-#  end
+  # alias Experimental.Flow, as: Flow
+  def example_with_genstage_as_prototype() do
+    File.stream!(@test_file)
+    |> Flow.from_enumerable()
+    |> Flow.flat_map(&String.split(&1, " "))
+    |> Flow.paratition()
+    |> Flow.reduce(fn -> %{} end, fn word, acc ->
+      Map.update(acc, word, 1, & &1 + &2)
+    end)
+    |> Enum.to_list()
+  end
 end
