@@ -1,6 +1,8 @@
 defmodule MyGenStage do
   @test_file "data/sample.txt"
 
+  alias Experimental.Flow
+
   def example1() do
     File.read!(@test_file)
     |> String.split("\n")
@@ -43,7 +45,7 @@ defmodule MyGenStage do
     File.stream!(@test_file)
     |> Flow.from_enumerable()
     |> Flow.flat_map(&String.split(&1, " "))
-    |> Flow.paratition()
+    |> Flow.partition()
     |> Flow.reduce(fn -> %{} end, fn word, acc ->
       Map.update(acc, word, 1, & &1 + &2)
     end)
